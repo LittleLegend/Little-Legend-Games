@@ -190,7 +190,7 @@ namespace DigitalRubyShared
         {
             Direction = SwipeGestureRecognizerDirection.Any;
             MinimumDistanceUnits = 1.0f; // default to 1 inch minimum distance
-            MinimumSpeedUnits = 3.0f; // must move 3 inches / second speed to execute
+            MinimumSpeedUnits = 0.5f; // must move 3 inches / second speed to execute
             DirectionThreshold = 1.5f;
             EndMode = SwipeGestureRecognizerEndMode.EndImmediately;
         }

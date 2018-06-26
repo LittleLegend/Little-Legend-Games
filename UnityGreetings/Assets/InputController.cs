@@ -7,7 +7,6 @@ using DigitalRubyShared;
 public class InputController{
 
     Player Player;
-    Camera Camera;
     GestureAdapter GestureAdapter;
     StateMachine StateMachine;
     
@@ -16,9 +15,9 @@ public class InputController{
     public List<Gesture> GestureList;
     public ICommand CheckInputCommand;
 
-    public InputController(Camera camera, Player player, GestureAdapter gestureAdapter, StateMachine stateMachine )
+    public InputController( Player player, GestureAdapter gestureAdapter, StateMachine stateMachine )
     {
-        Camera = camera;
+        
         Player = player;
         GestureAdapter = gestureAdapter;
         StateMachine = stateMachine;

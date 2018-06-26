@@ -41,7 +41,7 @@ public class References : MonoBehaviour {
         GestureFactory = new GestureFactory(Player,StateMachine);
         ScoreController = new ScoreController(UIController);
         GestureAdapter = new GestureAdapter(FingersScript);
-        InputController = new InputController(Camera, Player, GestureAdapter,StateMachine);
+        InputController = new InputController( Player, GestureAdapter,StateMachine);
 
     }
      

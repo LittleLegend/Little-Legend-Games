@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System;
 using System.Diagnostics;
 
+
 namespace DigitalRubyShared
 {
     /// <summary>
@@ -47,6 +48,7 @@ namespace DigitalRubyShared
                 if (distance > ThresholdUnits)
                 {
                     SetState(GestureRecognizerState.Failed);
+                    
                 }
                 else
                 {
@@ -81,8 +83,8 @@ namespace DigitalRubyShared
         /// </summary>
         public LongPressGestureRecognizer()
         {
-            MinimumDurationSeconds = 0.6f;
-            ThresholdUnits = 0.35f;
+            MinimumDurationSeconds = 0.2f;
+            ThresholdUnits = 0f;
         }
 
         /// <summary>
