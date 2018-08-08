@@ -49,8 +49,10 @@ public class InputController{
     {
         if (gesture.State == GestureRecognizerState.Ended)
         {
+            StateMachine.Timer.TimerRunning = true;
+            StateMachine.StartCoroutine(StateMachine.Timer.StartTimer(3f));
+            StateMachine.CurrentGameState = GameState.SaySomething;
             
-            StateMachine.CurrentGameState = GameState.CloseDoor;
         }
     }
 

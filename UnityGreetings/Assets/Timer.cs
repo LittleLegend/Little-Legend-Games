@@ -31,6 +31,7 @@ public class Timer{
     public void EndTimer()
     {
         TimerRunning = false;
+        
     }
 
     

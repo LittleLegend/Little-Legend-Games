@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-public class StateMachine: MonoBehaviour{
+public class StateMachine : MonoBehaviour {
 
     public GameState CurrentGameState;
     public People CurrentGuest;
-    Timer Timer;
+    public Timer Timer;
 
     public References References;
 
@@ -20,11 +20,11 @@ public class StateMachine: MonoBehaviour{
 
     public AnimationController AnimationController;
     public UIController UIController;
-    
+
 
     public void Start()
     {
-        
+
 
         CurrentGameState = GameState.Setup;
     }
@@ -39,10 +39,11 @@ public class StateMachine: MonoBehaviour{
         InputGreetings();
         CompareGreetings();
         WatchScene();
+        SaySomething();
         CloseDoor();
         SetGuest();
     }
-  
+
 
     public void Setup()
     {
@@ -59,9 +60,9 @@ public class StateMachine: MonoBehaviour{
             DataManager.Load();
             CurrentGuest = PeopleFactory.createRandom(ScoreController.GetCombo());
             ScoreController.PeopleList.Add(CurrentGuest);
-            
+
             AnimationController.SetGuest(CurrentGuest.Type);
-            
+
             CurrentGameState = GameState.ButtonClick;
 
         }
@@ -91,7 +92,7 @@ public class StateMachine: MonoBehaviour{
     {
         if (CurrentGameState == GameState.SettingTimer)
         {
-            
+
             Timer = new Timer();
             Timer.StartTimer(CurrentGuest.MaxGreetingTime);
             InputController.CreateGestures();
@@ -110,7 +111,7 @@ public class StateMachine: MonoBehaviour{
 
         }
     }
-        public void CompareGreetings()
+    public void CompareGreetings()
     {
         if (CurrentGameState == GameState.CompareGreetings)
         {
@@ -127,25 +128,42 @@ public class StateMachine: MonoBehaviour{
             {
                 CurrentGuest.SetGreetedRight(false);
                 ScoreController.ResetCombo();
-                
+
             }
-            
+
             Timer.EndTimer();
 
             CurrentGuest.SetGreetingTime(Timer.Time);
-            
+
             CurrentGameState = GameState.WatchScene;
         }
     }
 
-     public void WatchScene()
+    public void WatchScene()
     {
         if (CurrentGameState == GameState.WatchScene)
         {
-            
+
             AnimationController.WatchSceneAnimation(CurrentGuest, Player.PlayerGreeting);
         }
     }
+
+    public void SaySomething()
+    {
+        if (CurrentGameState == GameState.SaySomething)
+        {
+            
+            AnimationController.SaySomethingAnimation();
+            
+            if (Timer.Time >= 3)
+                {
+                
+                    CurrentGameState = GameState.CloseDoor;
+                }
+            
+        }
+    }
+
 
     public void CloseDoor()
     {

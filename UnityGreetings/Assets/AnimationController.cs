@@ -9,6 +9,7 @@ public class AnimationController : MonoBehaviour {
     public Animator Guest_Animator;
     public Animator Scene_Animator;
     public Animator Clock_Animator;
+    public Animator Speech_Animator;
     public SpriteRenderer SceneRenderer;
     public SpriteRenderer GreetingRenderer;
     
@@ -27,13 +28,19 @@ public class AnimationController : MonoBehaviour {
 
     }
 
-    
-    public void CloseDoorAnimation()
+    public void SaySomethingAnimation()
     {
-        Doorstep_Animator.SetBool("DoorOpen", false);
+        Speech_Animator.SetInteger("Speech", 1);
         EnableScene(false);
         Scene_Animator.SetInteger("Scene", 0);
 
+    }
+
+    public void CloseDoorAnimation()
+    {
+        Speech_Animator.SetInteger("Speech", 0);
+        Doorstep_Animator.SetBool("DoorOpen", false);
+        
     }
 
     public bool IsDoorClosed()
